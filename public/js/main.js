@@ -59,9 +59,9 @@ const speak = () => {
             return;
         }
         if(textInput.value !== "") {
-                body.style.background = '#141414 url(img/wave.gif)';
-                body.style.backgroundRepeat = 'repeat-x';
-                body.style.backgroundSize = '100% 100%';
+                textForm.style.background = '#141414 url(img/wave.gif)';
+                textForm.style.backgroundRepeat = 'repeat-x';
+                textForm.style.backgroundSize = '100% 100%';
                 var count = 1;
 
                 var translatedVoice;
@@ -99,7 +99,7 @@ const speak = () => {
 
                         speakText.onend = e =>{
 
-                        body.style.background = 'black';
+                        textForm.style.background = '#141414';
 
                         console.log("Done Speaking ....");
                        console.log(count);
