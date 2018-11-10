@@ -1,0 +1,13 @@
+body{
+	padding: 10px;
+	background: url(../img/background.jpeg);
+}
+form {
+	padding: 5px;
+	border-radius:6px;
+}
+#copyright {
+	color: #fff;
+	margin-bottom: 2px;
+	margin-left: 85%;
+}
