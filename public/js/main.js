@@ -8,6 +8,30 @@ const pitch = document.querySelector("#pitch");
 const pitchValue = document.querySelector("#pitch-value");
 const voiceSelect = document.querySelector("#select-voice");
 const body = document.querySelector("body");
+ var request = require('request');
+//Browser identifier
+// Firefox 1.0+
+var isFirefox = typeof InstallTrigger !== 'undefined';
+
+// Chrome 1+
+var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+// translate text function
+function translateText(text,to) {
+    var encodedText = encodeURIComponent(text);
+    var APIkey = 'trnsl.1.1.20180919T092428Z.e002d2bf6d6203f9.5d700814ead3353b8f2b18ecb32708e79a195d10';
+     var url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key='+APIkey+'&text='+encodedText'&lang=en-'+to+'&[format=plain]';
+    request({
+        url:url,
+        json:true
+    },function(error,response,data){
+        return data.text[0];
+    })
+}
+
+
+
+// Init voices array
 
 
 let voices =[];
@@ -30,10 +54,16 @@ const getVoices = () => {
 
 
 };
-getVoices();
-if(synth.onvoiceschanged !== undefined){
-    synth.onvoiceschanged =  getVoices;
+
+if (isFirefox) {
+    getVoices();
 }
+if (isChrome) {
+    if (synth.onvoiceschanged !== undefined) {
+        synth.onvoiceschanged = getVoices;
+    }
+}
+
 
 const speak = () => {
 
@@ -65,10 +95,12 @@ if(textInput.value !== "") {
     }
 
     const selectedVoice = voiceSelect.selectedOptions[0].getAttribute('data-name');
-  voices.forEach(voice => {
-    if( voice.name === selectedVoice){
-        speakText.voice = voice;
-    }
+    const selectedLang =  voiceSelect.selectedOptions[0].getAttribute('data-lang').substring(0,2);
+    console.log(selectedLang);
+      voices.forEach(voice => {
+        if( voice.name === selectedVoice){
+            speakText.voice = voice;
+        }
 
   });
 
