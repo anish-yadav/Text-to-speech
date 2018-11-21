@@ -6,6 +6,7 @@ const speechSynthesisSupported = 'speechSynthesis' in window;
 	let isPlaying = false
 
 const textForm = document.querySelector("form");
+const img = document.querySelector("img");
 const textInput = document.querySelector("#text-input");
 const rate = document.querySelector("#rate");
 const rateValue = document.querySelector("#rate-value");
@@ -64,7 +65,8 @@ const getVoices = () => {
 
     if (TextToSpeech !=='') {
 
-    textForm.style.background = "#FF7417 url('../img/wave.gif')";
+    textForm.style.background = "url('../img/wave.gif')";
+    img.style.background = "black ";
 
 		const utterence = new SpeechSynthesisUtterance();
 		
@@ -92,6 +94,7 @@ const getVoices = () => {
 					        window.speechSynthesis.speak(utterence);
 			    utterence.onend = e => {
 			    	textForm.style.background = '#FF7417';
+            img.style.background = "#FF7417 ";
 			    }
                   //}
         }
