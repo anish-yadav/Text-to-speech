@@ -65,8 +65,11 @@ const getVoices = () => {
 
     if (TextToSpeech !=='') {
 
-    textForm.style.background = "url('../img/wave.gif')";
-    img.style.background = "black ";
+    textForm.style.background = "url('../img/wave1.gif')";
+    img.style.background = "#fff ";
+    textForm.style.backgroundRepeat = "no-repeat";
+    textForm.style.backgroundSize = "100% 100%";
+    
 
 		const utterence = new SpeechSynthesisUtterance();
 		
@@ -93,8 +96,8 @@ const getVoices = () => {
 
 					        window.speechSynthesis.speak(utterence);
 			    utterence.onend = e => {
-			    	textForm.style.background = '#FF7417';
-            img.style.background = "#FF7417 ";
+			textForm.style.background = '#FFF';
+            img.style.background = "#FFF ";
 			    }
                   //}
         }
